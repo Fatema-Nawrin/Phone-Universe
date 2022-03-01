@@ -28,8 +28,12 @@ button:hover{
     box-shadow: 0 4px 12px 0 lightsteelblue;
     border-radius: 0.5rem;
   }
-/*For small devices */
+  .single-phone{
+      width: 65%;
+  }
+/*For large devices */
 @media only screen and (min-width: 768px) {
+    
     .input-container {
       width: 50%;
     }
@@ -37,8 +41,13 @@ button:hover{
         width: 50%;
     }
 }
-/* For medium & large devices */
+/* For amall devices */
 @media only screen and (max-width: 768px) {
+    button {
+        padding:0.4rem;  
+        font-size: 14px;
+        border: 1px solid solid  rgb(25, 37, 105);
+    }
     .input-container {
       width: 75%;
     }
