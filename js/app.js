@@ -5,7 +5,7 @@ const searchPhone = () => {
     // clear search field 
     searchField.value = '';
     if (searchText == '') {
-        alert('Please, enter a name.')
+        alert('Please, enter a phone name.')
     }
     else {
         console.log(searchText);
@@ -23,7 +23,7 @@ const displaySearchResult = (phones) => {
     // clear search result 
     searchResult.innerText = '';
     if (phones.length == 0) {
-        alert("Such Phone doesn't exist");
+        alert("Sorry, Information for this phone doesn't exist.");
     }
     phones?.forEach(phone => {
         const div = document.createElement('div')
