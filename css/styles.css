@@ -4,6 +4,8 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
+
+/* search box styles */
 button {
     border: 2px solid  rgb(25, 37, 105);
     border-radius: 0.7rem;
@@ -24,24 +26,25 @@ button:hover{
     border-radius: 0.2rem;
     margin: 0;
 }
+.input-container {
+    width: 50%;
+}
+/* single phone details styles */
+.single-phone{
+    width: 85%;
+}
+.single-phone img{
+    width: 55% ;
+}
+/* search result styles */
+.img-container{
+    width: 50%;
+}
 .card {
     box-shadow: 0 4px 12px 0 lightsteelblue;
     border-radius: 0.5rem;
-  }
-  .single-phone{
-      width: 65%;
-  }
-/*For large devices */
-@media only screen and (min-width: 768px) {
-    
-    .input-container {
-      width: 50%;
-    }
-    .img-container{
-        width: 50%;
-    }
 }
-/* For amall devices */
+/* For small devices */
 @media only screen and (max-width: 768px) {
     button {
         padding:0.4rem;  
