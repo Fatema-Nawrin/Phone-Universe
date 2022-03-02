@@ -109,4 +109,5 @@ const displayDetails = phone => {
     div2.appendChild(div3)
     detailsDiv.appendChild(div)
     detailsDiv.appendChild(div2)
+    window.scrollTo(0, 0);
 }

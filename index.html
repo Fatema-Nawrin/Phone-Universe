@@ -15,18 +15,21 @@
 
 <body class="mx-auto container">
     <h1 class="text-center py-4">Phone Universe</h1>
+
     <!-- search area  -->
     <div class="input-group mb-5 mx-auto input-container">
         <input type="text" class="form-control border border-dark" id="search-field" placeholder="Enter Phone Name"
             aria-label="Recipient's username" aria-describedby="button-addon2">
         <button onclick="searchPhone()" class="search-btn" type="button" id="search-button">Search</button>
     </div>
+
     <!-- error message  -->
     <div>
         <p id="error-message" class="text-danger text-center fw-bolder">
             Information for this phone doesn't exist. Please, enter a proper name.
         </p>
     </div>
+
     <!-- single phone details  -->
     <div id="toggle-details" class="mx-auto single-phone">
         <div id="phone-details" class="row row-cols-1 row-cols-md-2 g-3">
