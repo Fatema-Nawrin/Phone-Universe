@@ -1,3 +1,7 @@
+// hide error message 
+document.getElementById('error-message').style.display = 'none';
+
+// function to load searched phone 
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     toggleDetails('none')
@@ -5,7 +9,7 @@ const searchPhone = () => {
     // clear search field 
     searchField.value = '';
     if (searchText == '') {
-        alert('Please, enter a phone name.')
+        displayError('block');
     }
     else {
         console.log(searchText);
@@ -15,20 +19,26 @@ const searchPhone = () => {
             .then(data => displaySearchResult(data.data))
     }
 }
+// function for error 
+const displayError = (style) => {
+    document.getElementById('error-message').style.display = style;
+}
 
+// function to display search result 
 const displaySearchResult = (phones) => {
     phones = phones.slice(0, 20)
-    console.log(phones);
     const searchResult = document.getElementById('search-result');
     // clear search result 
     searchResult.innerText = '';
     if (phones.length == 0) {
-        alert("Sorry, Information for this phone doesn't exist.");
+        displayError('block');
     }
-    phones?.forEach(phone => {
-        const div = document.createElement('div')
-        div.classList.add('col')
-        div.innerHTML = `
+    else {
+        document.getElementById('error-message').style.display = 'none'
+        phones?.forEach(phone => {
+            const div = document.createElement('div')
+            div.classList.add('col')
+            div.innerHTML = `
         <div class="card">
             <img src="${phone.image}" class="mx-auto mt-3 img-container" alt="...">
             <div class="card-body text-center">
@@ -37,14 +47,16 @@ const displaySearchResult = (phones) => {
                 <button onclick="loadDetails('${phone.slug}')">Details</button>
             </div >
         </div> `
-        searchResult.appendChild(div)
-    });
+            searchResult.appendChild(div)
+        });
+    }
 }
-
+// function to show or hide details 
 const toggleDetails = displayStyles => {
     document.getElementById('toggle-details').style.display = displayStyles;
 }
 
+// function to load details 
 const loadDetails = id => {
     toggleDetails('block');
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
@@ -52,11 +64,13 @@ const loadDetails = id => {
         .then(res => res.json())
         .then(data => displayDetails(data.data))
 }
+
+// function to display details 
 const displayDetails = phone => {
-    const detailsDiv = document.getElementById('phone-details')
-    console.log(phone);
+    const detailsDiv = document.getElementById('phone-details');
+    // converting sensor info to string 
     let sensorInfo = phone.mainFeatures.sensors.join(', ');
-    detailsDiv.innerText = ''
+    detailsDiv.innerText = '';
     const div = document.createElement('div')
     div.innerHTML = `
         <div>
@@ -79,6 +93,7 @@ const displayDetails = phone => {
         <p class="my-1">${sensorInfo}.</p>
     </div>
 `
+    // creating div to show others info if exists 
     const div3 = document.createElement('div')
     if (!phone.others) {
         div3.innerHTML = ``
