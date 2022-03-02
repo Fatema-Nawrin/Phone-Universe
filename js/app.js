@@ -8,17 +8,12 @@ const searchPhone = () => {
     const searchText = searchField.value;
     // clear search field 
     searchField.value = '';
-    if (searchText == '') {
-        displayError('block');
-    }
-    else {
-        console.log(searchText);
-        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => displaySearchResult(data.data))
-    }
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displaySearchResult(data.data))
 }
+
 // function for error 
 const displayError = (style) => {
     document.getElementById('error-message').style.display = style;
@@ -30,6 +25,7 @@ const displaySearchResult = (phones) => {
     const searchResult = document.getElementById('search-result');
     // clear search result 
     searchResult.innerText = '';
+    // error message 
     if (phones.length == 0) {
         displayError('block');
     }
@@ -70,6 +66,7 @@ const displayDetails = phone => {
     const detailsDiv = document.getElementById('phone-details');
     // converting sensor info to string 
     let sensorInfo = phone.mainFeatures.sensors.join(', ');
+    // div for image 
     detailsDiv.innerText = '';
     const div = document.createElement('div')
     div.innerHTML = `
@@ -100,13 +97,13 @@ const displayDetails = phone => {
     }
     else {
         div3.innerHTML = `
-        <h5 class="mb-1">Other Details:</h5>
-        <p class="m-0"><span class="fw-bolder">Bluetooth: </span>${phone.others.Bluetooth ? phone.others.Bluetooth : 'No data found'}.</p>
-        <p class="my-0"><span class="fw-bolder">Radio: </span>${phone.others.Radio ? phone.others.Radio : 'No data found'}.</p>
-        <p class="my-0"><span class="fw-bolder">NFC:  </span>${phone.others.NFC ? phone.others.NFC : 'No data found'}.</p>
-        <p class="my-0"><span class="fw-bolder">USB:  </span>${phone.others.USB ? phone.others.USB : 'No data found'}.</p>
-        <p class="my-0"><span class="fw-bolder">GPS:  </span>${phone.others.GPS ? phone.others.GPS : 'No data found'}.</p>
-        <p class="my-0"><span class="fw-bolder">WLAN:  </span>${phone.others.WLAN ? phone.others.WLAN : 'No data found'}.</p>
+        <h5 class="my-1">Other Details:</h5>
+        <p class="my-1"><span class="fw-bolder">Bluetooth: </span>${phone.others.Bluetooth ? phone.others.Bluetooth : 'No data found'}.</p>
+        <p class="my-1"><span class="fw-bolder">Radio: </span>${phone.others.Radio ? phone.others.Radio : 'No data found'}.</p>
+        <p class="my-1"><span class="fw-bolder">NFC:  </span>${phone.others.NFC ? phone.others.NFC : 'No data found'}.</p>
+        <p class="my-1"><span class="fw-bolder">USB:  </span>${phone.others.USB ? phone.others.USB : 'No data found'}.</p>
+        <p class="my-1"><span class="fw-bolder">GPS:  </span>${phone.others.GPS ? phone.others.GPS : 'No data found'}.</p>
+        <p class="my-1"><span class="fw-bolder">WLAN:  </span>${phone.others.WLAN ? phone.others.WLAN : 'No data found'}.</p>
         `
     }
     div2.appendChild(div3)
